@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Laberint</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_newgame">Laberint nou</string>
+    <string name="action_cercaampla">Cerca amplada</string>
+    <string name="action_cercaprofunditat">Cerca profunditat</string>
+    <string name="action_cercamanhattan">Manhattan</string>
+    <string name="action_cercaeuclidea">Euclidea</string>
+    <string name="action_reset">Reinicia</string>
+    <string name="action_viatjant">Viatjant</string>
+    <string name="action_cerques">Cerques</string>
+    <string name="action_run">Cerca ara</string>
+
+
+</resources>

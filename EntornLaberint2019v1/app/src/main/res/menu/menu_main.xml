@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.ramon.laberint.MainActivity">
+
+    <item
+        android:id="@+id/action_newgame"
+        android:orderInCategory="100"
+        android:title="@string/action_newgame"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_cerques"
+        android:orderInCategory="100"
+        android:title="@string/action_cerques"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_reset"
+        android:orderInCategory="100"
+        android:title="@string/action_reset"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_run"
+        android:orderInCategory="100"
+        android:title="@string/action_run"
+        app:showAsAction="ifRoom" />
+</menu>
+

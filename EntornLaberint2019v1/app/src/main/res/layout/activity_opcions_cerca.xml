@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal">
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elegantTextHeight="false"
+                android:gravity="right"
+                android:text="Pacman:"
+                android:textAlignment="gravity"
+                android:textSize="20dp" />
+            <Spinner
+                android:id="@+id/Spinner_cerques1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"></Spinner>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal">
+            <TextView
+                android:id="@+id/txt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elegantTextHeight="false"
+                android:gravity="right"
+                android:text="Fantasma 1:"
+                android:textAlignment="gravity"
+                android:textSize="20dp" />
+            <Spinner
+                android:id="@+id/Spinner_cerques2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"></Spinner>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal">
+            <TextView
+                android:id="@+id/txt3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elegantTextHeight="false"
+                android:gravity="right"
+                android:text="Fantasma 2:"
+                android:textAlignment="gravity"
+                android:textSize="20dp" />
+            <Spinner
+                android:id="@+id/Spinner_cerques3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"></Spinner>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal">
+            <TextView
+                android:id="@+id/txt4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elegantTextHeight="false"
+                android:gravity="right"
+                android:text="Fantasma 3:"
+                android:textAlignment="gravity"
+                android:textSize="20dp" />
+            <Spinner
+                android:id="@+id/Spinner_cerques4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"></Spinner>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal">
+            <TextView
+                android:id="@+id/txt5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elegantTextHeight="false"
+                android:gravity="right"
+                android:text="Fantasma 4:"
+                android:textAlignment="gravity"
+                android:textSize="20dp" />
+            <Spinner
+                android:id="@+id/Spinner_cerques5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"></Spinner>
+        </TableRow>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:baselineAligned="false"
+                android:gravity="center_horizontal|bottom">
+
+                <Button
+                    android:id="@+id/buttonCANCEL"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0.5"
+                    android:text="Cancel" />
+
+                <Button
+                    android:id="@+id/buttonOK"
+                    android:layout_weight="0.5"
+                    android:height="30dp"
+                    android:text="Ok" />
+
+            </TableRow>
+        </TableLayout>
+    </TableLayout>
+</LinearLayout>

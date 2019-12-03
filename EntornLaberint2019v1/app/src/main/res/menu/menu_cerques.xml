@@ -1,0 +1,130 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.ramon.laberint.MainActivity">
+
+    <item
+        android:id="@+id/action_newgame"
+        android:orderInCategory="100"
+        android:title="@string/action_newgame"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_amplada"
+        android:orderInCategory="100"
+        android:title="@string/action_cercaampla"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/action_amplada0"
+                android:title="Pacman" />
+            <item
+                android:id="@+id/action_amplada1"
+                android:title="Fantasma 1" />
+            <item
+                android:id="@+id/action_amplada2"
+                android:title="Fantasma 2" />
+            <item
+                android:id="@+id/action_amplada3"
+                android:title="Fantasma 3" />
+            <item
+                android:id="@+id/action_amplada4"
+                android:title="Fantasma 4" />
+            <item
+                android:id="@+id/action_amplada5"
+                android:title="Tots els Fantasmes" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_profunditat"
+        android:orderInCategory="100"
+        android:title="@string/action_cercaprofunditat"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/action_profunditat0"
+                android:title="Pacman" />
+            <item
+                android:id="@+id/action_profunditat1"
+                android:title="Fantasma 1" />
+            <item
+                android:id="@+id/action_profunditat2"
+                android:title="Fantasma 2" />
+            <item
+                android:id="@+id/action_profunditat3"
+                android:title="Fantasma 3" />
+            <item
+                android:id="@+id/action_profunditat4"
+                android:title="Fantasma 4" />
+            <item
+                android:id="@+id/action_profunditat5"
+                android:title="Tots els Fantasmes" />
+
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_manhattan"
+        android:orderInCategory="100"
+        android:title="@string/action_cercamanhattan"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/action_manhatan0"
+                android:title="Pacman" />
+            <item
+                android:id="@+id/action_manhatan1"
+                android:title="Fantasma 1" />
+            <item
+                android:id="@+id/action_manhatan2"
+                android:title="Fantasma 2" />
+            <item
+                android:id="@+id/action_manhatan3"
+                android:title="Fantasma 3" />
+            <item
+                android:id="@+id/action_manhatan4"
+                android:title="Fantasma 4" />
+            <item
+                android:id="@+id/action_manhatan5"
+                android:title="Tots els Fantasmes" />
+
+        </menu>
+
+    </item>
+    <item
+        android:id="@+id/action_euclidea"
+        android:orderInCategory="100"
+        android:title="@string/action_cercaeuclidea"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/action_euclidea0"
+                android:title="Pacman" />
+            <item
+                android:id="@+id/action_euclidea1"
+                android:title="Fantasma 1" />
+            <item
+                android:id="@+id/action_euclidea2"
+                android:title="Fantasma 2" />
+            <item
+                android:id="@+id/action_euclidea3"
+                android:title="Fantasma 3" />
+            <item
+                android:id="@+id/action_euclidea4"
+                android:title="Fantasma 4" />
+            <item
+                android:id="@+id/action_euclidea5"
+                android:title="Tots els Fantasmes" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/viatjant"
+        android:orderInCategory="100"
+        android:title="@string/action_viatjant"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_reset"
+        android:orderInCategory="100"
+        android:title="@string/action_reset"
+        app:showAsAction="ifRoom" />
+</menu>
+

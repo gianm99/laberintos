@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:weightSum="1"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Laberint:"
+                android:id="@+id/textView0"
+                android:elegantTextHeight="false"
+                android:textSize="20dp"
+                android:textAlignment="gravity"
+                android:gravity="right" />
+
+            <Spinner
+                android:id="@+id/Spinner_tipuslaberint"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="right"></Spinner>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Número de files:"
+                android:id="@+id/textView"
+                android:elegantTextHeight="false"
+                android:textSize="20dp"
+                android:textAlignment="gravity"
+                android:gravity="right" />
+
+            <Spinner
+                android:id="@+id/Spinner_files"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="right"></Spinner>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:transitionGroup="false"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Número de columnes:"
+                android:id="@+id/textView2"
+                android:textSize="20dp"
+                android:gravity="right"
+                android:textAlignment="gravity" />
+
+            <Spinner
+                android:id="@+id/Spinner_columnes"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity="center_horizontal"></Spinner>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="% Parets borrades:"
+                android:id="@+id/textView3"
+                android:textSize="20dp"
+                android:gravity="right"
+                android:textAlignment="gravity" />
+
+            <Spinner
+                android:id="@+id/Spinner_parets"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"></Spinner>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:transitionGroup="false"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Velocitat:"
+                android:id="@+id/textView6"
+                android:textSize="20dp"
+                android:gravity="right"
+                android:textAlignment="gravity" />
+
+            <Spinner
+                android:id="@+id/Spinner_velocitat"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"></Spinner>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:transitionGroup="false"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fantasmes:"
+                android:id="@+id/textView7"
+                android:textSize="20dp"
+                android:gravity="right"
+                android:textAlignment="gravity" />
+
+            <Spinner
+                android:id="@+id/Spinner_fantasmes"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"></Spinner>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:transitionGroup="false"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mostra camins:"
+                android:id="@+id/textView8"
+                android:textSize="20dp"
+                android:gravity="right"
+                android:textAlignment="gravity" />
+
+            <CheckBox
+                android:id="@+id/Check_camins"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"></CheckBox>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:transitionGroup="false"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mata pacman:"
+                android:id="@+id/textView9"
+                android:textSize="20dp"
+                android:gravity="right"
+                android:textAlignment="gravity" />
+
+            <CheckBox
+                android:id="@+id/Check_mata"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"></CheckBox>
+        </TableRow>
+
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:baselineAligned="false"
+            android:gravity="center_horizontal|bottom">
+
+            <Button
+                android:text="Cancel"
+                android:id="@+id/buttonCANCEL"
+                android:layout_weight="0.5"
+                android:layout_gravity="center_horizontal" />
+            <Button
+                android:text="Ok"
+                android:id="@+id/buttonOK"
+                android:layout_weight="0.5"
+                android:height="30dp" />
+
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
