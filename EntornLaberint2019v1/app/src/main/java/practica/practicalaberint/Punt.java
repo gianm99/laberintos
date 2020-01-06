@@ -1,59 +1,63 @@
 package practica.practicalaberint;
 
 /**
- * Created by Ramon Mas on 10/3/16.
- * Classe per guardar les coordenades x,y d'un píxel o d'una casella del laberint
- * Inclou atributs addicionals per si es vol utilitzar com a node en els algorismes de cerca (previ, distancias)
+ * Created by Ramon Mas on 10/3/16. Classe per guardar les coordenades x,y d'un
+ * píxel o d'una casella del laberint Inclou atributs addicionals per si es vol
+ * utilitzar com a node en els algorismes de cerca (previ, distancias)
  */
 
 public class Punt implements Comparable<Punt> {
-    // x i y: coordenades fila, columna
+	// x i y: coordenades fila, columna
 
-    int x;
-    int y;
-    Punt previ;
-    boolean visible = true; // variable auxiliar
+	int x;
+	int y;
+	Punt previ;
+	boolean visible = true; // variable auxiliar
+	// variables per a la cerca heurística
+	double f, g, h;
 
-    Punt()
-    {
-        super();
-    }
+	Punt() {
+		super();
+	}
 
-    Punt(int x1, int y1, Punt f, int val)
-    {
-        super();
-        this.x = x1;
-        this.y = y1;
-        this.previ = f;
-    }
+	Punt(int x1, int y1, Punt f, int val) {
+		super();
+		this.x = x1;
+		this.y = y1;
+		this.previ = f;
+	}
 
-    Punt(Punt p1)
-    {
-        this.x =p1.x;
-        this.y =p1.y;
-    }
+	Punt(Punt p1) {
+		this.x = p1.x;
+		this.y = p1.y;
+	}
 
-    Punt(int x, int y)
-    {
-        this.x = x;
-        this.y = y;
-    }
+	Punt(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
 
-    @Override
-    public boolean equals(Object other){   //per veure si dos punts són iguals
-        if (other == null) return false;
-        if (((Punt)other).x == this.x && ((Punt) other).y == this.y) return true;
-        else return false;
-    }
+	@Override
+	public boolean equals(Object other) { // per veure si dos punts són iguals
+		if (other == null)
+			return false;
+		if (((Punt) other).x == this.x && ((Punt) other).y == this.y)
+			return true;
+		else
+			return false;
+	}
 
-    double distancia(Punt p)
-    {
-        return Math.sqrt((x-p.x)*(x-p.x)+(y-p.y)*(y-p.y));
-    }
+	int distanciaManhattan(Punt p) {
+		return Math.abs(x - p.x) + Math.abs(y - p.y);
+	}
 
-    public int compareTo(Punt punt2) {   // compara els valors de les heurístiques aplicades a dos punts
+	double distancia(Punt p) {
+		return Math.sqrt((x - p.x) * (x - p.x) + (y - p.y) * (y - p.y));
+	}
 
-        return 0;
-    }
+	public int compareTo(Punt punt2) { // compara els valors de les heurístiques aplicades a dos punts
+
+		return 0;
+	}
 
 }
