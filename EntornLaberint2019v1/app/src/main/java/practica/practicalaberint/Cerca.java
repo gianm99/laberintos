@@ -14,7 +14,7 @@ import java.util.ListIterator;
  * AUTORS: Gian Lucas Martín Chamorro y Tomás Bordoy García-Carpintero
  */
 /*
- * S'ha d'omplenar la següent taula amb els diferents valors del nodes visitats
+ * S'ha d'emplenar la següent taula amb els diferents valors del nodes visitats
  * i llargada del camí resultat per les diferents grandàries de laberints
  * proposades i comentar breument els resultats obtinguts.
  ****************************************************************************************************************
@@ -113,8 +113,8 @@ public class Cerca {
 				tancat.add(actual);
 				// afegir succesors no visitats a OBERT (al final)
 				for (Punt p : succesors) {
-					// si no ha estat visitat, l'afegeix
-					if (!tancat.contains(p)) {
+					// eliminar si està en obert o tancat
+					if (!tancat.contains(p) && !obert.contains(p)) {
 						p.previ = actual;
 						obert.addLast(p);
 					}
@@ -155,8 +155,8 @@ public class Cerca {
 			tancat.add(actual);
 			// afegir succesors no visitats a OBERT (al final)
 			for (Punt p : succesors) {
-				// si no ha estat visitat, l'afegeix
-				if (!tancat.contains(p)) {
+				// eliminar si està en obert o tancat
+				if (!tancat.contains(p) && !obert.contains(p)) {
 					p.previ = actual;
 					obert.push(p);
 				}
@@ -252,13 +252,4 @@ public class Cerca {
 		return camiTrobat;
 	}
 
-	/******************** Funcions auxiliars ********************/
-
-	// MenorF retorna el punt amb menor f d'una llista
-	// private Punt MenorF(LinkedList<Punt> llista) {
-	// if (llista.isEmpty()) {
-	// System.err.println("ERROR: llista buida");
-	// return null;
-	// }
-	// }
 }
