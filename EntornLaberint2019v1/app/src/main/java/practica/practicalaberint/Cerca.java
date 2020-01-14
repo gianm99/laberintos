@@ -155,6 +155,8 @@ public class Cerca {
 			tancat.add(actual);
 			// afegir succesors no visitats a OBERT (al final)
 			for (Punt p : succesors) {
+				// // eliminar si està en obert, tancat o en el camí
+				// if (!tancat.contains(p) && !obert.contains(p) && p.previ==null) {
 				// eliminar si està en obert o tancat
 				if (!tancat.contains(p) && !obert.contains(p)) {
 					p.previ = actual;
