@@ -123,12 +123,13 @@ public class Cerca {
 		}
 		if (!trobat) {
 			System.err.println("ERROR: No s'ha trobat el camí");
-		} else {
-			do {
-				camiTrobat.afegeix(new Punt(actual));
-				actual = actual.previ;
-			} while (actual != null);
+			return null;
 		}
+		do {
+			camiTrobat.afegeix(new Punt(actual));
+			actual = actual.previ;
+		} while (actual != null);
+
 		return camiTrobat;
 	}
 
@@ -167,12 +168,12 @@ public class Cerca {
 		}
 		if (!trobat) {
 			System.err.println("ERROR: No s'ha trobat el camí");
-		} else {
-			do {
-				camiTrobat.afegeix(new Punt(actual));
-				actual = actual.previ;
-			} while (actual != null);
+			return null;
 		}
+		do {
+			camiTrobat.afegeix(new Punt(actual));
+			actual = actual.previ;
+		} while (actual != null);
 		return camiTrobat;
 	}
 
@@ -183,7 +184,6 @@ public class Cerca {
 		Punt actual = new Punt();
 		LinkedList<Punt> obert = new LinkedList<Punt>(); // Llista obert
 		LinkedList<Punt> tancat = new LinkedList<Punt>(); // Llista tancat
-		double f, g, h;
 		// inicialitzar el punt origen
 		origen.f = 0;
 		origen.g = 0;
@@ -212,6 +212,7 @@ public class Cerca {
 			ArrayList<Punt> succesors = veinats(actual);
 			for (Punt p : succesors) {
 				if (!tancat.contains(p)) {
+					double f, g, h;
 					g = actual.g + 1;
 					switch (tipus) {
 					case MainGame.MANHATTAN:
@@ -234,15 +235,14 @@ public class Cerca {
 		}
 		if (!trobat) {
 			System.err.println("ERROR: No s'ha trobat el camí");
-		} else {
-			do {
-				camiTrobat.afegeix(new Punt(actual));
-				actual = actual.previ;
-			} while (actual != null);
+			return null;
 		}
+		do {
+			camiTrobat.afegeix(new Punt(actual));
+			actual = actual.previ;
+		} while (actual != null);
 
 		return camiTrobat;
-
 	}
 
 	public Cami CercaViatjant(Punt origen, Punt desti) {
