@@ -121,16 +121,7 @@ public class Cerca {
 				}
 			}
 		}
-		if (!trobat) {
-			System.err.println("ERROR: No s'ha trobat el camí");
-			return null;
-		}
-		do {
-			camiTrobat.afegeix(new Punt(actual));
-			actual = actual.previ;
-		} while (actual != null);
-
-		return camiTrobat;
+		return cercarCami(trobat, camiTrobat);
 	}
 
 	public Cami CercaEnProfunditat(Punt origen, Punt desti) {
@@ -166,15 +157,7 @@ public class Cerca {
 			}
 
 		}
-		if (!trobat) {
-			System.err.println("ERROR: No s'ha trobat el camí");
-			return null;
-		}
-		do {
-			camiTrobat.afegeix(new Punt(actual));
-			actual = actual.previ;
-		} while (actual != null);
-		return camiTrobat;
+		return cercarCami(trobat, camiTrobat);
 	}
 
 	public Cami CercaAmbHeurística(Punt origen, Punt desti, int tipus) { // Tipus pot ser MANHATTAN o EUCLIDIA
@@ -233,16 +216,7 @@ public class Cerca {
 				}
 			}
 		}
-		if (!trobat) {
-			System.err.println("ERROR: No s'ha trobat el camí");
-			return null;
-		}
-		do {
-			camiTrobat.afegeix(new Punt(actual));
-			actual = actual.previ;
-		} while (actual != null);
-
-		return camiTrobat;
+		return cercarCami(trobat, camiTrobat);
 	}
 
 	public Cami CercaViatjant(Punt origen, Punt desti) {
@@ -254,4 +228,16 @@ public class Cerca {
 		return camiTrobat;
 	}
 
+	// Funcions auxiliars
+	private Cami cercarCami(boolean trobat,Cami camiTrobat){
+		if (!trobat) {
+			System.err.println("ERROR: No s'ha trobat el camí");
+			return null;
+		}
+		do {
+			camiTrobat.afegeix(new Punt(actual));
+			actual = actual.previ;
+		} while (actual != null);
+		return camiTrobat;
+	}
 }
