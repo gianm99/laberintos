@@ -92,7 +92,6 @@ public class Cerca {
 
 	public Cami CercaEnAmplada(Punt origen, Punt desti) {
 		Cami camiTrobat = new Cami(files * columnes);
-		laberint.setNodes(0);
 		boolean trobat = false;
 		Punt actual = new Punt();
 		LinkedList<Punt> obert = new LinkedList<Punt>(); // Llista obert
@@ -126,7 +125,6 @@ public class Cerca {
 
 	public Cami CercaEnProfunditat(Punt origen, Punt desti) {
 		Cami camiTrobat = new Cami(files * columnes);
-		laberint.setNodes(0);
 		boolean trobat = false;
 		Punt actual = new Punt();
 		LinkedList<Punt> obert = new LinkedList<Punt>(); // Llista obert
@@ -162,7 +160,6 @@ public class Cerca {
 
 	public Cami CercaAmbHeurística(Punt origen, Punt desti, int tipus) { // Tipus pot ser MANHATTAN o EUCLIDIA
 		Cami camiTrobat = new Cami(files * columnes);
-		laberint.setNodes(0);
 		boolean trobat = false;
 		Punt actual = new Punt();
 		LinkedList<Punt> obert = new LinkedList<Punt>(); // Llista obert
