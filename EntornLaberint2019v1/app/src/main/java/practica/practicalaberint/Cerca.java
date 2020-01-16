@@ -92,7 +92,6 @@ public class Cerca {
 
 	public Cami CercaEnAmplada(Punt origen, Punt desti) {
 		Cami camiTrobat = new Cami(files * columnes);
-		laberint.setNodes(0);
 		boolean trobat = false;
 		Punt actual = new Punt();
 		LinkedList<Punt> obert = new LinkedList<Punt>(); // Llista obert
@@ -121,20 +120,11 @@ public class Cerca {
 				}
 			}
 		}
-		if (!trobat) {
-			System.err.println("ERROR: No s'ha trobat el camí");
-		} else {
-			do {
-				camiTrobat.afegeix(new Punt(actual));
-				actual = actual.previ;
-			} while (actual != null);
-		}
-		return camiTrobat;
+		return cercarCami(trobat, camiTrobat);
 	}
 
 	public Cami CercaEnProfunditat(Punt origen, Punt desti) {
 		Cami camiTrobat = new Cami(files * columnes);
-		laberint.setNodes(0);
 		boolean trobat = false;
 		Punt actual = new Punt();
 		LinkedList<Punt> obert = new LinkedList<Punt>(); // Llista obert
@@ -165,25 +155,15 @@ public class Cerca {
 			}
 
 		}
-		if (!trobat) {
-			System.err.println("ERROR: No s'ha trobat el camí");
-		} else {
-			do {
-				camiTrobat.afegeix(new Punt(actual));
-				actual = actual.previ;
-			} while (actual != null);
-		}
-		return camiTrobat;
+		return cercarCami(trobat, camiTrobat);
 	}
 
 	public Cami CercaAmbHeurística(Punt origen, Punt desti, int tipus) { // Tipus pot ser MANHATTAN o EUCLIDIA
 		Cami camiTrobat = new Cami(files * columnes);
-		laberint.setNodes(0);
 		boolean trobat = false;
 		Punt actual = new Punt();
 		LinkedList<Punt> obert = new LinkedList<Punt>(); // Llista obert
 		LinkedList<Punt> tancat = new LinkedList<Punt>(); // Llista tancat
-		double f, g, h;
 		// inicialitzar el punt origen
 		origen.f = 0;
 		origen.g = 0;
@@ -212,6 +192,7 @@ public class Cerca {
 			ArrayList<Punt> succesors = veinats(actual);
 			for (Punt p : succesors) {
 				if (!tancat.contains(p)) {
+					double f, g, h;
 					g = actual.g + 1;
 					switch (tipus) {
 					case MainGame.MANHATTAN:
@@ -232,26 +213,114 @@ public class Cerca {
 				}
 			}
 		}
-		if (!trobat) {
-			System.err.println("ERROR: No s'ha trobat el camí");
-		} else {
+		return cercarCami(trobat, camiTrobat);
+	}
+
+	public Cami CercaViatjant(Punt origen, Punt desti) {
+        Cami camiTrobat = new Cami(files * columnes);
+        Cami camiActual = new Cami(files * columnes);
+        Cami camiMesCurt = new Cami(files * columnes);
+        Cami iterador;
+
+
+        laberint.setNodes(0);
+        int[] p={1,2,3,4};
+        int nKeys = 4;
+        int nodesVisitats = 0;
+        int bestTour = 0;
+        int longIterador = 0;
+        int longTotal[] = new int[4];
+        int longMin = 0, longCam = 0;
+
+
+
+
+
+        return CrearPath(origen, desti,p);
+    }
+
+    public void permuteHelper( Punt origen, Punt desti, int[] arr, int index){
+        if(index >= arr.length - 1){ //If we are at the last element - nothing left to permute
+            //System.out.println(Arrays.toString(arr));
+            //Print the array
+          if( CrearPath(origen,desti, arr).longitud<3){}
+            return;
+        }
+
+        for(int i = index; i < arr.length; i++){ //For each index in the sub array arr[index...end]
+
+            //Swap the elements at indices index and i
+            int t = arr[index];
+            arr[index] = arr[i];
+            arr[i] = t;
+
+            //Recurse on the sub array arr[index+1...end]
+            permuteHelper(origen, desti, arr, index+1);
+
+            //Swap the elements back
+            t = arr[index];
+            arr[index] = arr[i];
+            arr[i] = t;
+        }
+    }
+
+
+
+
+
+
+
+
+  /*  public static void permute(int start, int[] input) {
+        if (start == input.length) {
+            //System.out.println(input);
+            for (int x : input) {
+                System.out.print(x);
+            }
+            System.out.println("");
+            return;
+        }}
+*/
+        /******************** Funcions auxiliars ********************/
+
+		private Cami cercarCami(boolean trobat,Cami camiTrobat){
+			if (!trobat) {
+				System.err.println("ERROR: No s'ha trobat el camí");
+				return null;
+			}
 			do {
 				camiTrobat.afegeix(new Punt(actual));
 				actual = actual.previ;
 			} while (actual != null);
-		}
+			return camiTrobat;
+		}	
 
-		return camiTrobat;
+        public Cami addPath (Cami camiActual, Punt origen, Punt desti){
+              Cami iterador;
 
-	}
+            iterador = CercaAmbHeurística(origen, desti, MainGame.MANHATTAN);
+            iterador.inverteix();
+            for (int x = 0; x < iterador.longitud; x++) {
+                camiActual.afegeix(iterador.cami[x]);
+            }
+            camiActual.nodesVisitats = iterador.nodesVisitats;
+            return camiActual;
+        }
 
-	public Cami CercaViatjant(Punt origen, Punt desti) {
-		Cami camiTrobat = new Cami(files * columnes);
-		laberint.setNodes(0);
 
-		// Implementa l'algorisme aquí
+        public Cami CrearPath (Punt origen, Punt desti, int [] Permutaciones){
+            Cami camiBase = new Cami(files * columnes);
 
-		return camiTrobat;
-	}
+            camiBase = addPath(camiBase, origen, laberint.getObjecte(Permutaciones[0]));
+            camiBase = addPath(camiBase, laberint.getObjecte(Permutaciones[0]), laberint.getObjecte(Permutaciones[1]));
+            camiBase = addPath(camiBase, laberint.getObjecte(Permutaciones[1]), laberint.getObjecte(2));
+            camiBase = addPath(camiBase, laberint.getObjecte(Permutaciones[2]), laberint.getObjecte(Permutaciones[3]));
+            camiBase = addPath(camiBase, laberint.getObjecte(Permutaciones[3]), desti);
+
+            camiBase.inverteix();
+
+            return camiBase;
+
+        }
 
 }
