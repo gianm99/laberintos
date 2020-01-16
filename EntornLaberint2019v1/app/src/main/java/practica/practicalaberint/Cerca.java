@@ -192,23 +192,24 @@ public class Cerca {
 			// generar succesors
 			ArrayList<Punt> succesors = veinats(actual);
 			for (Punt p : succesors) {
-				if (!tancat.contains(p)) {
-					double f, g, h;
-					g = actual.g + 1;
-					switch (tipus) {
-					case MainGame.MANHATTAN:
-						h = p.distanciaManhattan(desti);
-						break;
-					default:
-						h = p.distancia(desti);
-						break;
-					}
-					f = g + h;
-					if (p.f == 0 || f < p.f) {
-						p.f = f;
-						p.g = g;
-						p.h = h;
-						p.previ = actual;
+				double f, g, h;
+				g = actual.g + 1;
+				switch (tipus) {
+				case MainGame.MANHATTAN:
+					h = p.distanciaManhattan(desti);
+					break;
+				default:
+					h = p.distancia(desti);
+					break;
+				}
+				f = g + h;
+				if (p.f == 0 || f < p.f) {
+					p.f = f;
+					p.g = g;
+					p.h = h;
+					p.previ = actual;
+					tancat.remove(p);
+					if(!obert.contains(p)){
 						obert.add(p);
 					}
 				}
