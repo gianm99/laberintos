@@ -120,7 +120,7 @@ public class Cerca {
 				}
 			}
 		}
-		return cercarCami(trobat, camiTrobat);
+		return cercarCami(trobat, camiTrobat,actual);
 	}
 
 	public Cami CercaEnProfunditat(Punt origen, Punt desti) {
@@ -155,7 +155,7 @@ public class Cerca {
 			}
 
 		}
-		return cercarCami(trobat, camiTrobat);
+		return cercarCami(trobat, camiTrobat,actual);
 	}
 
 	public Cami CercaAmbHeurística(Punt origen, Punt desti, int tipus) { // Tipus pot ser MANHATTAN o EUCLIDIA
@@ -213,7 +213,7 @@ public class Cerca {
 				}
 			}
 		}
-		return cercarCami(trobat, camiTrobat);
+		return cercarCami(trobat, camiTrobat,actual);
 	}
 
 	public Cami CercaViatjant(Punt origen, Punt desti) {
@@ -224,7 +224,7 @@ public class Cerca {
 
 
         laberint.setNodes(0);
-        int[] p={1,2,3,4};
+        int p[] ={0,1,2,3};
         int nKeys = 4;
         int nodesVisitats = 0;
         int bestTour = 0;
@@ -236,14 +236,13 @@ public class Cerca {
 
 
 
-        return CrearPath(origen, desti,p);
+        return CrearPath(origen, desti, p);
     }
 
     public void permuteHelper( Punt origen, Punt desti, int[] arr, int index){
         if(index >= arr.length - 1){ //If we are at the last element - nothing left to permute
             //System.out.println(Arrays.toString(arr));
             //Print the array
-          if( CrearPath(origen,desti, arr).longitud<3){}
             return;
         }
 
@@ -283,7 +282,7 @@ public class Cerca {
 */
         /******************** Funcions auxiliars ********************/
 
-		private Cami cercarCami(boolean trobat,Cami camiTrobat){
+		private Cami cercarCami(boolean trobat,Cami camiTrobat,Punt actual){
 			if (!trobat) {
 				System.err.println("ERROR: No s'ha trobat el camí");
 				return null;
@@ -313,7 +312,7 @@ public class Cerca {
 
             camiBase = addPath(camiBase, origen, laberint.getObjecte(Permutaciones[0]));
             camiBase = addPath(camiBase, laberint.getObjecte(Permutaciones[0]), laberint.getObjecte(Permutaciones[1]));
-            camiBase = addPath(camiBase, laberint.getObjecte(Permutaciones[1]), laberint.getObjecte(2));
+            camiBase = addPath(camiBase, laberint.getObjecte(Permutaciones[1]), laberint.getObjecte(Permutaciones[2]));
             camiBase = addPath(camiBase, laberint.getObjecte(Permutaciones[2]), laberint.getObjecte(Permutaciones[3]));
             camiBase = addPath(camiBase, laberint.getObjecte(Permutaciones[3]), desti);
 
