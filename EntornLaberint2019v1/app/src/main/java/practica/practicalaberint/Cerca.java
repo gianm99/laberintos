@@ -13,55 +13,63 @@ import java.util.ListIterator;
 /**
  * AUTORS: Gian Lucas Martín Chamorro y Tomás Bordoy García-Carpintero
  */
-
-/* S'ha d'omplenar la següent taula amb els diferents valors del nodes visitats i llargada del camí resultat
+/* S'ha d'emplenar la següent taula amb els diferents valors del nodes visitats i llargada del camí resultat
  * per les diferents grandàries de laberints proposades i comentar breument els resultats obtinguts.
  ****************************************************************************************************************
- *                  Profunditat           Amplada          Manhattan         Euclidiana         Viatjant        *
- *  Laberint     Nodes   Llargada    Nodes   Llargada   Nodes   Llargada   Nodes   Llargada  Nodes   Llargada   *
+ *					Profunditat			Amplada				Manhattan			Euclidiana			Viatjant	*
+ *  Laberint	Nodes	Llargada	Nodes	Llargada	Nodes	Llargada	Nodes	Llargada	Nodes	Llargada*
  * **************************************************************************************************************
- *    Petit
- *    Mitjà
- *    Gran
+ *    Petit		23		18			62		8			27		8			27		8			86		46
+ *    Mitjà		83		64			198		14			51		14			78		14			386		84
+ *    Gran		188		68			576		28			520		28			814		28			663		122
  *
  * Comentari sobre els resultats obtinguts:
- *
- *
- *
- *
- *
- *
+ * Els resultats per al laberint petit mostren que per a la cerca en profunditat es troba  
+ * ràpidament la solució (no òptima) com amb les cerques amb heurística mentre que a la cerca
+ * en amplada s'han de visitar més nodes. La cerca de viatjant és un cas apart que utilitza 
+ * la cerca heurística amb la distància Manhattan per trobar els seus camins intermitjos.
+ * Per al laberint mitjà passa el mateix, la d'amplada torna a ser la cerca que més nodes 
+ * visita pero aconsegueix la solució óptima. Les cerques amb heurística troben la mateixa 
+ * solució però visitant molt menys nodes. El cas de la cerca de viatjant és similar al del 
+ * laberint petit.
+ * Per al laberint gran passa que la cerca en profunditat troba la solució bastant més ràpid 
+ * que les altres cerques però amb major longitud. També que la cerca Euclidiana en aquest 
+ * laberint en concret triga visitar més nodes que el d'amplada. Aixó es un cas extrany, perquè
+ *  en diferents proves realitzades a laberints aleatoris la cerca euclidiana sol treure millor 
+ * resultat en termes de visites a nodes.
+ * En conclusió, en general les cerques amb heurística o informades han de visitar menys nodes i 
+ * treuen bons resultats en termes de longitud. La cerca en amplada i en profunditat, com són 
+ * no informades, poden variar en els seus resultats depenent de cada cas.
  */
 
 public class Cerca {
 	Laberint laberint; // laberint on es cerca
 	int files, columnes; // files i columnes del laberint
+	Cami camiMin;          //
 
 	public Cerca(Laberint l) {
 		files = l.nFiles;
 		columnes = l.nColumnes;
 		laberint = l;
+		camiMin= new Cami(files * columnes);
 	}
 
 	public Cami fesCerca(int tipus, Punt origen, Punt desti) {
 		if (esValid(origen) && esValid(desti)) {
 			switch (tipus) {
-			case (MainGame.AMPLADA):
-				return CercaEnAmplada(origen, desti);
+				case (MainGame.AMPLADA):
+					return CercaEnAmplada(origen, desti);
 
-			case (MainGame.PROFUNDITAT):
-				return CercaEnProfunditat(origen, desti);
+				case (MainGame.PROFUNDITAT):
+					return CercaEnProfunditat(origen, desti);
 
-			case (MainGame.MANHATTAN):
-			case (MainGame.EUCLIDEA):
-				return CercaAmbHeurística(origen, desti, tipus);
+				case (MainGame.MANHATTAN):
+				case (MainGame.EUCLIDEA):
+					return CercaAmbHeurística(origen, desti, tipus);
 
-			case (MainGame.VIATJANT):
-				laberint.posaCornalonsColor();
-				// es pot agafar la posició del cornaló i
-				// amb la funció "getObjecte(i)"
-
-				return CercaViatjant(origen, desti);
+				case (MainGame.VIATJANT):
+					laberint.posaCornalonsColor();
+					return CercaViatjant(origen, desti);
 			}
 		}
 		return null;
@@ -121,7 +129,7 @@ public class Cerca {
 				}
 			}
 		}
-		return cercarCami(trobat, camiTrobat, actual);
+		return cercarCami(trobat, camiTrobat,actual);
 	}
 
 	public Cami CercaEnProfunditat(Punt origen, Punt desti) {
@@ -156,7 +164,7 @@ public class Cerca {
 			}
 
 		}
-		return cercarCami(trobat, camiTrobat, actual);
+		return cercarCami(trobat, camiTrobat,actual);
 	}
 
 	public Cami CercaAmbHeurística(Punt origen, Punt desti, int tipus) { // Tipus pot ser MANHATTAN o EUCLIDIA
@@ -218,58 +226,21 @@ public class Cerca {
 		return cercarCami(trobat, camiTrobat, actual);
 	}
 
-	public Cami CercaViatjant(Punt origen, Punt desti) {
-		Cami camiTrobat = new Cami(files * columnes);
-		Cami camiActual = new Cami(files * columnes);
-		Cami camiMesCurt = new Cami(files * columnes);
-		Cami iterador;
-
-		laberint.setNodes(0);
-		int[] p = { 1, 2, 3, 4 };
-		int nKeys = 4;
-		int nodesVisitats = 0;
-		int bestTour = 0;
-		int longIterador = 0;
-		int longTotal[] = new int[4];
-		int longMin = 0, longCam = 0;
-
-		return CrearPath(origen, desti, p);
+/* La millor estratègia per trobar el camí óptim és la de la força bruta, es a dir, trobar totes les combinacions de cerca posibles.
+	 Per fer-ho, hem utilitzat permutacions de les combinacions de cada clau. Hem fet servir mètodes auxiliars recursius per calcular
+	 el camí més curt. A més de mètodes que afegien un camí d'un punt a un altre o la creació d'un camí amb els punts determinats. 
+ */	 
+	public Cami CercaViatjant(Punt origen, Punt desti) {	
+			laberint.setNodes(0);							
+		int p[] = {0,1,2,3};								
+		camiMin=createPath(origen, desti, p);	// El camí mes curt s'inicialitza amb els valors predeterminats.
+		permutarCamins(origen, desti, p, 0);	// Es cerca el camí (més curt) òptim, recorrent les permutacions donades per l'array p, les quatre esquines.
+		return camiMin;
 	}
 
-	public void permuteHelper(Punt origen, Punt desti, int[] arr, int index) {
-		if (index >= arr.length - 1) { // If we are at the last element - nothing left to permute
-			// System.out.println(Arrays.toString(arr));
-			// Print the array
-			
-			return;
-		}
-
-		for (int i = index; i < arr.length; i++) { // For each index in the sub array arr[index...end]
-
-			// Swap the elements at indices index and i
-			int t = arr[index];
-			arr[index] = arr[i];
-			arr[i] = t;
-
-			// Recurse on the sub array arr[index+1...end]
-			permuteHelper(origen, desti, arr, index + 1);
-
-			// Swap the elements back
-			t = arr[index];
-			arr[index] = arr[i];
-			arr[i] = t;
-		}
-	}
-
-	/*
-	 * public static void permute(int start, int[] input) { if (start ==
-	 * input.length) { //System.out.println(input); for (int x : input) {
-	 * System.out.print(x); } System.out.println(""); return; }}
-	 */
 	/******************** Funcions auxiliars ********************/
 
-	private Cami cercarCami(boolean trobat, Cami camiTrobat, Punt actual) {
-
+	private Cami cercarCami(boolean trobat,Cami camiTrobat,Punt actual){		//Es crea el camí a partir de punts conectats, utilitzant punt.previ. 
 		if (!trobat) {
 			System.err.println("ERROR: No s'ha trobat el camí");
 			return null;
@@ -281,7 +252,7 @@ public class Cerca {
 		return camiTrobat;
 	}
 
-	public Cami addPath(Cami camiActual, Punt origen, Punt desti) {
+	public Cami addPath (Cami camiActual, Punt origen, Punt desti){		//Es fa una cerca amb heurística de Manhattan i s'afegeixen els punts i els nodels a un camí existent.
 		Cami iterador;
 
 		iterador = CercaAmbHeurística(origen, desti, MainGame.MANHATTAN);
@@ -289,23 +260,54 @@ public class Cerca {
 		for (int x = 0; x < iterador.longitud; x++) {
 			camiActual.afegeix(iterador.cami[x]);
 		}
-		camiActual.nodesVisitats = iterador.nodesVisitats;
+		camiActual.nodesVisitats += iterador.nodesVisitats;
 		return camiActual;
 	}
 
-	public Cami CrearPath(Punt origen, Punt desti, int[] Permutaciones) {
-		Cami camiBase = new Cami(files * columnes);
+	public Cami createPath (Punt origen, Punt desti, int [] Permutaciones){			// L'array de permutacions indica les coordenades del recorregut que ha de realitzar-se. S'inverteix per la 
+		Cami camiBase = new Cami(2*files * columnes);								// naturalesa de la funció afegeix
 
 		camiBase = addPath(camiBase, origen, laberint.getObjecte(Permutaciones[0]));
 		camiBase = addPath(camiBase, laberint.getObjecte(Permutaciones[0]), laberint.getObjecte(Permutaciones[1]));
-		camiBase = addPath(camiBase, laberint.getObjecte(Permutaciones[1]), laberint.getObjecte(2));
+		camiBase = addPath(camiBase, laberint.getObjecte(Permutaciones[1]), laberint.getObjecte(Permutaciones[2]));
 		camiBase = addPath(camiBase, laberint.getObjecte(Permutaciones[2]), laberint.getObjecte(Permutaciones[3]));
 		camiBase = addPath(camiBase, laberint.getObjecte(Permutaciones[3]), desti);
-
-		camiBase.inverteix();
 
 		return camiBase;
 
 	}
 
+	public void permutarCamins(Punt origen, Punt desti, int[] arr, int index) {
+		if (index >= arr.length - 1) { // SI ens trobam al darrer element, hem trobat una permutació i cercam un viatge amb aquestes coordenades.
+			Cami c = createPath(origen, desti, arr);
+			if (c.longitud <= camiMin.longitud) {
+				c.inverteix();
+				camiMin=new Cami(files*columnes);
+				for (int x = 0; x < c.longitud; x++) {
+					camiMin.afegeix(c.cami[x]);
+				}
+				camiMin.nodesVisitats = c.nodesVisitats;
+			}
+
+			return;
+		}
+
+		for (int i = index; i < arr.length; i++) { // El mètode recursiu utilitza una variable temporal per emmagatzemmar els valors i més tard tornar-los al seu lloc.
+
+			// Swap the elements at indices index and i
+			int t = arr[index];
+			arr[index] = arr[i];
+			arr[i] = t;
+
+			// Feim l'algorisme recursiu en base al index. Cada iteració serà un index major
+
+			permutarCamins(origen, desti, arr, index+1);
+
+			// Es fixa l'array de permutacions a l'estat inical
+			t = arr[index];
+			arr[index] = arr[i];
+			arr[i] = t;
+		}
+	}
+	
 }
